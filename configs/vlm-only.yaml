@@ -1,0 +1,8 @@
+name: exploratory-t2i-model
+exploratory: true
+vlm:
+  base_url: http://localhost:8000/v1
+  model: Qwen/Qwen3.8-27B-FP8
+  response_format: json_schema
+embedding:
+  backend: none

@@ -1,0 +1,24 @@
+# Server deployment stays outside the benchmark environment.
+name: my-t2i-model
+exploratory: false
+concurrency: 4
+timeout_seconds: 180
+vlm:
+  base_url: http://localhost:8000/v1
+  model: Qwen/Qwen3.8-27B-FP8
+  revision: null # Set to the exact server checkpoint commit for published results.
+  api_key_env: VLM_API_KEY
+  response_format: json_schema
+  request_kwargs:
+    temperature: 0
+    max_tokens: 8192
+  extra_body:
+    chat_template_kwargs:
+      enable_thinking: false
+embedding:
+  backend: local_gemma
+  model: google/embeddinggemma-2
+  revision: 914f7f89142e33e77833254d9c9b90c3cef7303b
+  device: cpu # Use cuda:0 on a separate GPU or after reserving memory outside vLLM.
+  batch_size: 16
+  text_prefix: 'task: sentence similarity | query: '

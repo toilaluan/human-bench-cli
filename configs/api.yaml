@@ -1,0 +1,21 @@
+# Replace endpoint/model placeholders with your provider's Chat Completions service.
+name: my-t2i-model
+exploratory: false
+concurrency: 4
+requests_per_minute: 60
+timeout_seconds: 180
+vlm:
+  base_url: https://api.example.com/v1
+  model: your-vision-model
+  api_key_env: VLM_API_KEY
+  response_format: json_schema # Or json_object / prompt_json, selected before the run.
+  # Populate only parameters supported by this model. They are part of the profile.
+  request_kwargs: {}
+  extra_body: {}
+embedding:
+  backend: api
+  base_url: https://api.example.com/v1
+  model: your-text-embedding-model
+  api_key_env: EMBEDDING_API_KEY
+  text_prefix: '' # Use a task prefix only when required by the selected embedder.
+  batch_size: 16
